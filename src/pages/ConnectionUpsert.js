@@ -10,7 +10,7 @@ export const ConnectionUpsert = () => {
 
   const formEl = useRef();
 
-  const [ConsumerNumber, setConsumerNumber] = useState("");
+  const [consumerNumber, setConsumerNumber] = useState("");
   const [applicationDate, setApplicationDate] = useState("");
   const [connectionDate, setConnectionDate] = useState("");
   const [connectionStatus, setConnectionStatus] = useState("");
@@ -19,7 +19,12 @@ export const ConnectionUpsert = () => {
   const updateConsumerNumber = (e) => setConsumerNumber(e.target.value);
   const updateppplicationDate = (e) => setApplicationDate(e.target.value);
   const updateconnectionDate = (e) => setConnectionDate(e.target.value);
-  const updateconnectionStatus = (e) => setConnectionStatus(e.target.value);
+
+  const updateconnectionStatus = (e) => {
+    setConnectionStatus(e.target.value);
+    console.log(e.target.value);
+  };
+
   const updateconnectiontype = (e) => setConnectionType(e.target.value);
 
   const addConnection = (e) => {
@@ -32,11 +37,17 @@ export const ConnectionUpsert = () => {
     if (isFormValid) {
       dispatch(
         cretaeConnectionAction({
-          ConsumerNumber,
+          consumerNumber,
           applicationDate,
           connectionDate,
           connectionStatus,
           connectiontype,
+          address: {
+            addressId: 1,
+          },
+          customer: {
+            customerId: 1,
+          },
         })
       );
     } else {
@@ -49,7 +60,7 @@ export const ConnectionUpsert = () => {
     <div>
       <AppNav />
       <div className="alert alert-secondary">
-        <h3> ADD Connection</h3>
+        <h3> Add Connection</h3>
       </div>
 
       {state.progress && (
@@ -61,20 +72,19 @@ export const ConnectionUpsert = () => {
       <form ref={formEl} className="mx-4 needs-validation" noValidate>
         <div>
           <input
-            type="text"
-            value={ConsumerNumber}
+            type="Number"
+            value={consumerNumber}
             onChange={updateConsumerNumber}
             className="form-control form-control-lg mb-1"
             placeholder="Enter ConsumerNumber"
-            minLength="3"
+            minLength="1"
             maxLength="30"
             required
           />
         </div>
-
         <div>
           <input
-            type="text"
+            type="date"
             value={applicationDate}
             onChange={updateppplicationDate}
             className="form-control form-control-lg mb-1"
@@ -84,10 +94,9 @@ export const ConnectionUpsert = () => {
             required
           />
         </div>
-
         <div>
           <input
-            type="text"
+            type="date"
             value={connectionDate}
             onChange={updateconnectionDate}
             className="form-control form-control-lg mb-1"
@@ -97,20 +106,30 @@ export const ConnectionUpsert = () => {
             required
           />
         </div>
-
-        <div>
+        {/* <div>
           <input
-            type="text "
+            type="text"
             value={connectionStatus}
             onChange={updateconnectionStatus}
             className="form-control form-control-lg mb-1"
             placeholder="Enter True or False"
+            minLength="3"
             maxLength="12"
             required
           />
-        </div>
+        </div> */}
 
-        <div>
+        <select
+          value={connectionStatus}
+          onChange={updateconnectionStatus}
+          className="form-control form-control-lg mb-1"
+        >
+          <option value="">Chose a ConnectionStatus:--</option>
+          <option value="True">TRUE</option>
+          <option value="False">FALSE</option>
+        </select>
+
+        {/* <div>
           <input
             type="text"
             value={connectiontype}
@@ -121,7 +140,27 @@ export const ConnectionUpsert = () => {
             maxLength="30"
             required
           />
-        </div>
+        </div> */}
+
+        {/* <label for="CoonectionType">Choose a ConnectionType:</label>
+        <select name="Connection" id="Type">
+          <option value="">Please choose an option--</option>
+          <option value="NON_INDUSTRIAL">NON_INDUSTRIAL</option>
+          <option value="INDUSTRIAL">INDUSTRIAL</option>
+          <option value="AGRICULTURAL">AGRICULTURAL</option> */}
+        {/* </select> */}
+        {/* ************************************* */}
+
+        <select
+          value={connectiontype}
+          onChange={updateconnectiontype}
+          className="form-control form-control-lg mb-1"
+        >
+          <option value="">Choose a ConnectionType:--</option>
+          <option value="NON_INDUSTRIAL">NON_INDUSTRIAL</option>
+          <option value="INDUSTRIAL">INDUSTRIAL</option>
+          <option value="AGRICULTURAL">AGRICULTURAL</option>
+        </select>
 
         <div>
           <input

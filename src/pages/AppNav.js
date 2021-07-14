@@ -22,12 +22,12 @@ export const AppNav = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
           <Nav.Link as={Link} to="/connection-upsert">
-            ADD Connection
+            Add Connection
           </Nav.Link>
-          {/* <Nav.Link as={Link} to="/customer-list">
-            CUSTOMER LIST
+          <Nav.Link as={Link} to="/connection-list">
+            Connection List
           </Nav.Link>
-          <Nav.Link as={Link} to="">
+          {/* <Nav.Link as={Link} to="">
             FIND CUSTOMER BY ID
           </Nav.Link>
           <Nav.Link as={Link} to="">

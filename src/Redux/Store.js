@@ -11,7 +11,7 @@ const PROGRESS_ACTION_TYPE = "PROGRESS_ACTION_TYPE";
 
 const CONNECTION_CREATE_ACTION_TYPE = "CONNECTION_CREATE_ACTION_TYPE";
 
-const CUSTOMER_GET_ALL_ACTION_TYPE = "CUSTOMER_GET_ALL_ACTION_TYPE";
+const CONNECTION_GET_ALL_ACTION_TYPE = "CONNECTION_GET_ALL_ACTION_TYPE";
 
 // const CUSTOMER_UPDATE_RENDER_ACTION_TYPE = "CUSTOMER_UPDATE_RENDER_ACTION_TYPE";
 
@@ -19,6 +19,21 @@ const CUSTOMER_GET_ALL_ACTION_TYPE = "CUSTOMER_GET_ALL_ACTION_TYPE";
 
 //   return { type: CUSTOMER_UPDATE_RENDER_ACTION_TYPE, payload: payload };
 // };
+export const getAllConnectionAction = () => {
+  return async (dispatch) => {
+    // API CALL
+    const url = `http://localhost:8080/customeruser/getallConnection`;
+    const response = await axios.get(url);
+
+    console.log(response);
+
+    // UI UPDATE
+    dispatch({
+      type: "CONNECTION_GET_ALL_ACTION_TYPE",
+      payload: response.data,
+    });
+  };
+};
 
 export const cretaeConnectionAction = (payload) => {
   return async (dispatch) => {
@@ -37,8 +52,8 @@ export const cretaeConnectionAction = (payload) => {
 
 function ConnectionReducer(state = initState, action) {
   switch (action.type) {
-    case CUSTOMER_GET_ALL_ACTION_TYPE:
-      return { ...state, customerList: action.payload };
+    case CONNECTION_GET_ALL_ACTION_TYPE:
+      return { ...state, connectionList: action.payload };
 
     case PROGRESS_ACTION_TYPE:
       return { ...state, progress: action.payload };
