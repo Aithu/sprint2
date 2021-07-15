@@ -27,6 +27,7 @@ export const AppNav = () => {
           <Nav.Link as={Link} to="/connection-list">
             Connection List
           </Nav.Link>
+          <Nav.Link as={Link} to="/connection-list"></Nav.Link>
           {/* <Nav.Link as={Link} to="">
             FIND CUSTOMER BY ID
           </Nav.Link>
