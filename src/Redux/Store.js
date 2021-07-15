@@ -5,7 +5,10 @@ import axios from "axios";
 const initState = {
   connectionList: [],
   progress: false,
+  addressList: [],
 };
+
+const ADDRESS_ACTION_TYPE = "ADDRESS_ACTION_TYPE";
 
 const PROGRESS_ACTION_TYPE = "PROGRESS_ACTION_TYPE";
 
@@ -49,6 +52,12 @@ export const cretaeConnectionAction = (payload) => {
     }, 5000);
   };
 };
+export const addressAction = (payload) => {
+  return async (dispatch) => {
+    const url = `http://localhost:8080/user/users`;
+    await axios.post(url, payload);
+  };
+};
 
 function ConnectionReducer(state = initState, action) {
   switch (action.type) {
@@ -57,6 +66,8 @@ function ConnectionReducer(state = initState, action) {
 
     case PROGRESS_ACTION_TYPE:
       return { ...state, progress: action.payload };
+    case ADDRESS_ACTION_TYPE:
+      return { ...state };
 
     // case CUSTOMER_UPDATE_RENDER_ACTION_TYPE:
     //   // 6
