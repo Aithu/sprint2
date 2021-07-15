@@ -54,7 +54,7 @@ export const cretaeConnectionAction = (payload) => {
 };
 export const addressAction = (payload) => {
   return async (dispatch) => {
-    const url = `http://localhost:8080/user/users`;
+    const url = `http://localhost:8080/customeruser/address`;
     await axios.post(url, payload);
   };
 };

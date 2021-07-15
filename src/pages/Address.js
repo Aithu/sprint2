@@ -6,7 +6,7 @@ export const Address = () => {
       </div>
       <form>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          {/* <div class="form-group col-md-6">
             <label for="AddressId">Address Id</label>
             <input
               type="text"
@@ -14,7 +14,7 @@ export const Address = () => {
               id="AddressId"
               placeholder="AddressId"
             />
-          </div>
+          </div> */}
           <div class="form-group col-md-6">
             <label for="Flat or HouseNumber">Flat or HouseNumber</label>
             <input

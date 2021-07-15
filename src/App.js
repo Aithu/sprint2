@@ -11,7 +11,7 @@ function App() {
 
       <Route exact path="/" component={ConnectionUpsert} />
       <Route exact path="/connection-list" component={ConnectionList} />
-      <Route exact path="/reader" component={Address} />
+      <Route exact path="/address" component={Address} />
 
       {/* <Route exact path="/customer-upsert" component={CustomerById} />
       <Route exact path="/" component={CustomerById} /> */}
