@@ -25,7 +25,7 @@ export const AppNav = () => {
             Add Connection
           </Nav.Link>
           <Nav.Link as={Link} to="/connection-list">
-            Connection List
+            Address
           </Nav.Link>
           <Nav.Link as={Link} to="/connection-list"></Nav.Link>
           {/* <Nav.Link as={Link} to="">
