@@ -6,6 +6,7 @@ const initState = {
   connectionList: [],
   progress: false,
   addressList: [],
+  searchResult: {},
 };
 
 const ADDRESS_ACTION_TYPE = "ADDRESS_ACTION_TYPE";
@@ -16,12 +17,58 @@ const CONNECTION_CREATE_ACTION_TYPE = "CONNECTION_CREATE_ACTION_TYPE";
 
 const CONNECTION_GET_ALL_ACTION_TYPE = "CONNECTION_GET_ALL_ACTION_TYPE";
 
-// const CUSTOMER_UPDATE_RENDER_ACTION_TYPE = "CUSTOMER_UPDATE_RENDER_ACTION_TYPE";
+const GET_CONNECTION_BY_ID_ACTION = "GET_CONNECTION_BY_ID_ACTION_TYPE";
 
-// export const updateRenderAction = (payload) => {
+// ***************************FINDBYACTIVECONNECTION********************
+export const getConnection = (payload) => {
+  return async (dispatch) => {
+    console.log(`filter : ${payload}`);
+    let url;
+    if (payload.filterType === "filterByPinCode") {
+      url = `http://localhost:8080/customeruser/findActiveConnetionByPincode?pincodeNumber=${payload.filter.pincode}`;
+    } else if (payload.filterType === "filterByVillage") {
+      url = `http://localhost:8080/customeruser/findActiveConnectionsByVillage?villageName=${payload.filter.village}`;
+    } else if (payload.filterType === "filterByDistrict") {
+      url = `http://localhost:8080/customeruser/findActiveConnetionByDistrict?districtName=${payload.filter.district}`;
+    }
 
-//   return { type: CUSTOMER_UPDATE_RENDER_ACTION_TYPE, payload: payload };
-// };
+    let data = [];
+    try {
+      const response = await axios.get(url);
+      data = response.data ? response.data : [];
+      console.log(data);
+    } catch (err) {
+      console.log(`Error ${err}`);
+    }
+    dispatch({ type: GET_CONNECTION_BY_ID_ACTION, payload: data });
+  };
+};
+
+// ****************************FindInACtiveCONNECTION*******************
+export const getInactiveConnection = (payload) => {
+  return async (dispatch) => {
+    console.log(`filter : ${payload}`);
+    let url;
+    if (payload.filterType === "filterByPinCode") {
+      url = `http://localhost:8080/customeruser/findInactiveConnetionByPincode?pincodeNumber=${payload.filter.pincode}`;
+    } else if (payload.filterType === "filterByVillage") {
+      url = `http://localhost:8080/customeruser/findInactiveConnectionsByVillage?villageName=${payload.filter.village}`;
+    } else if (payload.filterType === "filterByDistrict") {
+      url = `http://localhost:8080/customeruser/findIanctiveConnetionByDistrict?districtName=${payload.filter.district}`;
+    }
+
+    let data = null;
+    try {
+      const response = await axios.get(url);
+      data = response.data;
+      console.log(data);
+    } catch (err) {
+      console.log(`Error ${err}`);
+    }
+    dispatch({ type: GET_CONNECTION_BY_ID_ACTION, payload: data });
+  };
+};
+// ***********************************************
 export const getAllConnectionAction = () => {
   return async (dispatch) => {
     // API CALL
@@ -37,7 +84,7 @@ export const getAllConnectionAction = () => {
     });
   };
 };
-
+// **********************************
 export const cretaeConnectionAction = (payload) => {
   return async (dispatch) => {
     const url = `http://localhost:8080//customeruser/connection`;
@@ -52,13 +99,21 @@ export const cretaeConnectionAction = (payload) => {
     }, 5000);
   };
 };
+// *********************************
 export const addressAction = (payload) => {
   return async (dispatch) => {
     const url = `http://localhost:8080/customeruser/address`;
-    await axios.post(url, payload);
+    const a = await axios.post(url, payload);
+    console.log(a);
+    dispatch({ type: PROGRESS_ACTION_TYPE, payload: true });
+
+    // after 5 second PROGRESS :: FALSE AGAIN
+    setTimeout(() => {
+      dispatch({ type: PROGRESS_ACTION_TYPE, payload: false });
+    }, 5000);
   };
 };
-
+// ********************************
 function ConnectionReducer(state = initState, action) {
   switch (action.type) {
     case CONNECTION_GET_ALL_ACTION_TYPE:
@@ -69,10 +124,8 @@ function ConnectionReducer(state = initState, action) {
     case ADDRESS_ACTION_TYPE:
       return { ...state };
 
-    // case CUSTOMER_UPDATE_RENDER_ACTION_TYPE:
-    //   // 6
-    //   return { ...state, uref: action.payload };
-
+    case GET_CONNECTION_BY_ID_ACTION:
+      return { ...state, searchResult: action.payload };
     default:
       return state;
   }

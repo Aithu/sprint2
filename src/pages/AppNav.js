@@ -30,13 +30,13 @@ export const AppNav = () => {
           <Nav.Link as={Link} to="/address">
             Add Address
           </Nav.Link>
+          <Nav.Link as={Link} to="/active">
+            Active Connection
+          </Nav.Link>
+          <Nav.Link as={Link} to="/inactive">
+            InActive Connection
+          </Nav.Link>
           {/* <Nav.Link as={Link} to="">
-            FIND CUSTOMER BY ID
-          </Nav.Link>
-          <Nav.Link as={Link} to="">
-            FIND CUSTOMER BY MOBILE
-          </Nav.Link>
-          <Nav.Link as={Link} to="">
             FIND CUSTOMER BY ADHAR
           </Nav.Link>
           <Nav.Link as={Link} to="">

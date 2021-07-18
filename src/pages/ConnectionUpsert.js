@@ -28,9 +28,6 @@ export const ConnectionUpsert = () => {
   const updateconnectiontype = (e) => setConnectionType(e.target.value);
 
   const addConnection = (e) => {
-    // console.log(formEl.current);
-    // console.log(formEl.current.checkValidity());
-
     e.preventDefault();
 
     const isFormValid = formEl.current.checkValidity();
@@ -42,6 +39,7 @@ export const ConnectionUpsert = () => {
           connectionDate,
           connectionStatus,
           connectiontype,
+
           address: {
             addressId: 1,
           },
@@ -106,18 +104,6 @@ export const ConnectionUpsert = () => {
             required
           />
         </div>
-        {/* <div>
-          <input
-            type="text"
-            value={connectionStatus}
-            onChange={updateconnectionStatus}
-            className="form-control form-control-lg mb-1"
-            placeholder="Enter True or False"
-            minLength="3"
-            maxLength="12"
-            required
-          />
-        </div> */}
 
         <select
           value={connectionStatus}
@@ -128,27 +114,8 @@ export const ConnectionUpsert = () => {
           <option value="True">TRUE</option>
           <option value="False">FALSE</option>
         </select>
+        {/* **************************** */}
 
-        {/* <div>
-          <input
-            type="text"
-            value={connectiontype}
-            onChange={updateconnectiontype}
-            className="form-control form-control-lg mb-1"
-            placeholder="Enter ConnectionType"
-            minLength="3"
-            maxLength="30"
-            required
-          />
-        </div> */}
-
-        {/* <label for="CoonectionType">Choose a ConnectionType:</label>
-        <select name="Connection" id="Type">
-          <option value="">Please choose an option--</option>
-          <option value="NON_INDUSTRIAL">NON_INDUSTRIAL</option>
-          <option value="INDUSTRIAL">INDUSTRIAL</option>
-          <option value="AGRICULTURAL">AGRICULTURAL</option> */}
-        {/* </select> */}
         {/* ************************************* */}
 
         <select
