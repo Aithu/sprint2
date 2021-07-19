@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllConnectionAction, updateRenderAction } from "../redux/store";
+import {
+  getAllConnectionAction,
+  updateRenderAction,
+} from "../redux/ConnectionReducer";
 import { AppNav } from "./AppNav";
 import { useHistory } from "react-router-dom";
 export const ConnectionList = () => {
@@ -34,7 +37,7 @@ export const ConnectionList = () => {
         </thead>
 
         <tbody>
-          {state.connectionList.map((item, index) => (
+          {state.connection.connectionList.map((item, index) => (
             <tr key={index}>
               <th scope="row">{item.connectionId}</th>
               <td>{item.consumerNumber}</td>

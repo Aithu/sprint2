@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addressAction } from "../redux/store";
+import { addressAction } from "../redux/ConnectionReducer";
 import { AppNav } from "./AppNav";
 
 export const Address = () => {
@@ -57,7 +57,7 @@ export const Address = () => {
       <div className="alert alert-secondary">
         <h3>Address</h3>
       </div>
-      {state.progress && (
+      {state.connection.progress && (
         <div className="mx-4 alert alert-success">
           Address added Successfully
         </div>

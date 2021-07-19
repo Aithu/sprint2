@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getInactiveConnection } from "../redux/store";
+import { getInactiveConnection } from "../redux/ConnectionReducer";
 
 export function Filter(props) {
   const [selectedFilter, setSelectedFilter] = useState("filterByPhone");

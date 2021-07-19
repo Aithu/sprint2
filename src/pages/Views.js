@@ -1,15 +1,18 @@
 import { useSelector } from "react-redux";
-import { getConnection } from "../redux/store";
+import { getConnection } from "../redux/ConnectionReducer";
 
 export const ViewInactive = () => {
   const state = useSelector((state) => state);
-  console.log("state", state.searchResult);
+  console.log("state", state.connection.searchResult);
 
-  if (state.searchResult == null) {
-    state.searchResult = [];
-    console.log("state", state.searchResult);
+  if (state.connection.searchResult == null) {
+    state.connection.searchResult = [];
+    console.log("state", state.connection.searchResult);
   }
-  if (!state.searchResult || state.searchResult.length <= 0) {
+  if (
+    !state.connection.searchResult ||
+    state.connection.searchResult.length <= 0
+  ) {
     return (
       <div>
         <h3 className="mx-4 alert alert-success">No User Found!!!</h3>
@@ -35,9 +38,9 @@ export const ViewInactive = () => {
         </thead>
 
         <tbody>
-          {state.searchResult &&
-            state.searchResult.length > 0 &&
-            state.searchResult.map((item, index) => (
+          {state.connection.searchResult &&
+            state.connection.searchResult.length > 0 &&
+            state.connection.searchResult.map((item, index) => (
               <tr key={index}>
                 <th scope="row">{item.connectionId}</th>
                 <td> {item.customer.firstName}</td>

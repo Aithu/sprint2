@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cretaeConnectionAction } from "../redux/store";
+import { cretaeConnectionAction } from "../redux/ConnectionReducer";
 import { AppNav } from "./AppNav";
 
 export const ConnectionUpsert = () => {
@@ -61,7 +61,7 @@ export const ConnectionUpsert = () => {
         <h3> Add Connection</h3>
       </div>
 
-      {state.progress && (
+      {state.connection.progress && (
         <div className="mx-4 alert alert-success">
           Connection added Successfully
         </div>

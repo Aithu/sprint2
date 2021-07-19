@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getConnection } from "../redux/store";
+import { getConnection } from "../redux/ConnectionReducer";
 import { ViewConnection } from "./ViewConnection";
 import { ConnectionFind } from "./ConnectionFind";
 export function Filter(props) {
